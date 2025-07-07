@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>こぴぺであそぼう</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .copy-group {
+      margin-bottom: 15px;
+    }
+    input {
+      width: 300px;
+      padding: 5px;
+    }
+    button {
+      padding: 5px 10px;
+      margin-left: 10px;
+    }
+    .message {
+      color: green;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>ぼたんを　おして　こぴーをしてね</h2>
+
+  <div class="copy-group">
+    <input type="text" id="text1" value="おはようございます">
+    <button onclick="copyText('text1', 'msg1')">こぴーする</button>
+    <span id="msg1" class="message"></span>
+  </div>
+
+  <div class="copy-group">
+    <input type="text" id="text2" value="わかりました">
+    <button onclick="copyText('text2', 'msg2')">こぴーする</button>
+    <span id="msg2" class="message"></span>
+  </div>
+
+  <div class="copy-group">
+    <input type="text" id="text3" value="おわりました">
+    <button onclick="copyText('text3', 'msg3')">こぴーする</button>
+    <span id="msg3" class="message"></span>
+  </div>
+
+  <div class="copy-group">
+    <input type="text" id="text4" value="ありがとうございます">
+    <button onclick="copyText('text4', 'msg4')">こぴーする</button>
+    <span id="msg4" class="message"></span>
+  </div>
+
+  <div class="copy-group">
+    <input type="text" id="text5" value="げんきです">
+    <button onclick="copyText('text5', 'msg5')">こぴーする</button>
+    <span id="msg5" class="message"></span>
+  </div>
+
+  <script>
+    function copyText(inputId, messageId) {
+      const input = document.getElementById(inputId);
+      const message = document.getElementById(messageId);
+
+      input.select();
+      input.setSelectionRange(0, 99999); // モバイル対応
+
+      try {
+        document.execCommand("copy");
+        message.innerText = "コピーしました！";
+      } catch (err) {
+        message.innerText = "コピーに失敗しました。";
+      }
+
+      // メッセージを2秒後に消す
+      setTimeout(() => {
+        message.innerText = "";
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
